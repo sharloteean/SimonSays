@@ -1,0 +1,27 @@
+body{
+    height: 100%;
+    width: 100%;
+}
+
+.game{
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    top: calc(50% - 250px);
+    left: calc(50% - 250px);
+}
+.yellow{
+    background-color: yellow;
+}
+
+.red{
+    background-color: red;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.green{
+    background-color: green;
+}
