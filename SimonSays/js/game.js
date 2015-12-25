@@ -1,16 +1,29 @@
-var Events = require('event-pubsub');
-var readline = require('readline');
+window.onload=function(e){
+    init();
+};
 
-var event = new Events;
+var event = null;
 var simon = [];
 var simonStored = [];
 
-var rl = readline.createInterface(
-    {
-        input: process.stdin,
-        output: process.stdout
-    }
-);
+function init() {
+    var event = new window.pubsub();
+
+    event.on(
+        'ask',
+        askHandler
+    );
+
+    event.on(
+        'correct',
+        correctHandler
+    );
+
+    event.on(
+        'wrong',
+        wrongHandler
+    );
+}
 
 function add(){
     simonStored.unshift(Math.round((Math.random() * 100) % 3));
@@ -24,7 +37,7 @@ function add(){
 }
 
 function askHandler(){
-    rl.question('whats next?', answerHandler);
+    console.log('asked');
 }
 
 function answerHandler(answer){
@@ -57,20 +70,3 @@ function wrongHandler(){
     simon = [];
     add();
 }
-
-event.on(
-    'ask',
-    askHandler
-);
-
-event.on(
-    'correct',
-    correctHandler
-);
-
-event.on(
-    'wrong',
-    wrongHandler
-);
-
-add();

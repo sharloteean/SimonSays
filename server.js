@@ -1,5 +1,5 @@
 var os = require('os');
-var server=require('../../server/http.js');
+var server=require('node-http-server');
 
 server.deploy(
     {
