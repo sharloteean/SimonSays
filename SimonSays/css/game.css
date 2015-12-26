@@ -1,17 +1,30 @@
 body{
-    height: 100%;
-    width: 100%;
+
+}
+
+.start{
+    background-color: red;
+}
+
+.reset{
+    background-color:yellow;
+    background-image: linear-gradient(90deg, rgba(200,0,0,.5) 50%, transparent 50%),
+    linear-gradient(rgba(200,0,0,.5) 50%, transparent 50%);
+    background-size:50px 50px;
 }
 
 .game{
-    position: absolute;
     height: 500px;
     width: 500px;
-    top: calc(50% - 250px);
-    left: calc(50% - 250px);
 }
-.yellow{
-    background-color: yellow;
+
+.game div{
+    height: 200px;
+    width: 200px;
+}
+
+.purple{
+    background-color: purple;
 }
 
 .red{
