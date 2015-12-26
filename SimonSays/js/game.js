@@ -12,8 +12,14 @@ var red = {};
 var green = {};
 var answer = false;
 
+var context;
+var sound;
+
 function init() {
     window.events = new window.pubsub();
+    window.AudioContext = window.AudioContext;
+    context = new AudioContext();
+    sound = context.createOscillator();
 
     window.events.on(
         'ask',
@@ -41,8 +47,6 @@ function init() {
     purple.name = 'purple';
     blue.name = 'blue';
     green.name = 'green';
-
-    red.sound = new Audio('http://themushroomkingdom.net/sounds/wav/smb/smb_jump-small.wav');
 
     start.addEventListener(
         'click',
@@ -81,7 +85,7 @@ function startGame(){
 
 function purpleClick(){
     if(answer === true){
-        red.sound.play();
+        play(200);
         answer = false;
         answerHandler(0);
     }
@@ -89,7 +93,7 @@ function purpleClick(){
 
 function redClick(){
     if(answer === true){
-        red.sound.play();
+        play(225);
         answer = false;
         answerHandler(1);
     }
@@ -97,7 +101,7 @@ function redClick(){
 
 function blueClick() {
     if(answer === true){
-        red.sound.play();
+        play(250);
         answer = false;
         answerHandler(2);
     }
@@ -105,7 +109,7 @@ function blueClick() {
 
 function greenClick(){
     if(answer === true){
-        red.sound.play();
+        play(275);
         answer = false;
         answerHandler(3);
     }
@@ -136,7 +140,7 @@ function askHandler(){
     switch (simon[0]) {
         case 0:
             purple.button.classList.toggle('on');
-            red.sound.play();
+            play(200);
             setTimeout(
                 function(){
                     purple.button.classList.toggle(
@@ -152,7 +156,7 @@ function askHandler(){
             break;
         case 1:
             red.button.classList.toggle('on');
-            red.sound.play();
+            play(225);
             setTimeout(
                 function(){
                     red.button.classList.toggle(
@@ -168,7 +172,7 @@ function askHandler(){
             break;
         case 2:
             blue.button.classList.toggle('on');
-            red.sound.play();
+            play(250);
             setTimeout(
                 function(){
                     blue.button.classList.toggle(
@@ -184,7 +188,7 @@ function askHandler(){
             break;
         case 3:
             green.button.classList.toggle('on');
-            red.sound.play();
+            play(275);
             setTimeout(
                 function(){
                     green.button.classList.toggle(
@@ -227,4 +231,12 @@ function wrongHandler(){
     simonStored = [];
     simon = [];
     add();
+}
+
+function play(freq){
+    sound.connect(context.destination);
+    sound.frequency.value = freq;
+
+    sound.start(0);
+    sound.stop(0.5);
 }
