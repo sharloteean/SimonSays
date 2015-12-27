@@ -12,14 +12,8 @@ var red = {};
 var green = {};
 var answer = false;
 
-var context;
-var sound;
-
 function init() {
     window.events = new window.pubsub();
-    window.AudioContext = window.AudioContext;
-    context = new AudioContext();
-    sound = context.createOscillator();
 
     window.events.on(
         'ask',
@@ -55,28 +49,32 @@ function init() {
 
     red.button.addEventListener(
         'click',
-        redClick
+        clickHandler
     );
 
     purple.button.addEventListener(
         'click',
-        purpleClick
+        clickHandler
     );
 
     blue.button.addEventListener(
         'click',
-        blueClick
+        clickHandler
     );
 
     green.button.addEventListener(
         'click',
-        greenClick
+        clickHandler
     );
 
     reset.addEventListener(
         'click',
         resetGame
     );
+}
+
+function clickHandler(e){
+    console.log(this.className);
 }
 
 function startGame(){
@@ -91,7 +89,8 @@ function purpleClick(){
     }
 }
 
-function redClick(){
+function redClick(e){
+    console.log(this.id);
     if(answer === true){
         play(225);
         answer = false;
@@ -234,9 +233,17 @@ function wrongHandler(){
 }
 
 function play(freq){
+    window.AudioContext = window.AudioContext;
+    var context = new AudioContext();
+    sound = context.createOscillator();
     sound.connect(context.destination);
     sound.frequency.value = freq;
 
     sound.start(0);
     sound.stop(0.5);
+    sound.oneded = closeContext;
+}
+
+function closeContext(){
+    context.close();
 }

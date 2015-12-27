@@ -3,6 +3,7 @@ window.onload=function(e){
 }
 var context;
 var sound;
+
 function init() {
     console.log('context loaded')
     var button = document.querySelector('.soundButton');
@@ -20,5 +21,10 @@ function play() {
     sound.frequency.value = 200;
 
     sound.start(0);
-    sound.stop(3);
+    sound.stop(0.5);
+    sound.onended = playHandler;
+}
+
+function playHandler(){
+    context.close();
 }
