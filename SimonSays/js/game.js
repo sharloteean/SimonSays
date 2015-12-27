@@ -73,15 +73,16 @@ function init() {
     );
 }
 
-function clickHandler(e){
-    console.log(this.className);
-}
-
 function startGame(){
     add();
 }
 
-function purpleClick(){
+function resetGame(){
+    console.log('the game will be reset');
+}
+
+function clickHandler(e){
+    console.log(this.className);
     if(answer === true){
         play(200);
         answer = false;
@@ -89,34 +90,6 @@ function purpleClick(){
     }
 }
 
-function redClick(e){
-    console.log(this.id);
-    if(answer === true){
-        play(225);
-        answer = false;
-        answerHandler(1);
-    }
-}
-
-function blueClick() {
-    if(answer === true){
-        play(250);
-        answer = false;
-        answerHandler(2);
-    }
-}
-
-function greenClick(){
-    if(answer === true){
-        play(275);
-        answer = false;
-        answerHandler(3);
-    }
-}
-
-function resetGame(){
-    console.log('the game will be reset');
-}
 
 function add(){
 
@@ -235,15 +208,13 @@ function wrongHandler(){
 function play(freq){
     window.AudioContext = window.AudioContext;
     var context = new AudioContext();
-    sound = context.createOscillator();
+    var sound = context.createOscillator();
     sound.connect(context.destination);
     sound.frequency.value = freq;
 
     sound.start(0);
     sound.stop(0.5);
-    sound.oneded = closeContext;
-}
-
-function closeContext(){
-    context.close();
+    sound.onended = function closeContext(){
+        context.close();
+    };
 }
