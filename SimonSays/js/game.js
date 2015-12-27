@@ -6,11 +6,28 @@ var simon = [];
 var simonStored = [];
 var start;
 var reset;
-var purple = {};
-var blue = {};
-var red = {};
-var green = {};
 var answer = false;
+
+var colors = {
+    blue:{
+        light : {},
+        lightMedium: {},
+        darkMedium: {},
+        dark:{}
+    },
+    purple: {
+        light : {},
+        lightMedium: {},
+        darkMedium: {},
+        dark:{}
+    },
+    red: {
+        light : {},
+        lightMedium: {},
+        darkMedium: {},
+        dark:{}
+    }
+};
 
 function init() {
     window.events = new window.pubsub();
@@ -32,37 +49,37 @@ function init() {
 
     var start = document.querySelector('.start');
     var reset = document.querySelector('.reset');
-    red.button = document.querySelector('.red');
-    purple.button = document.querySelector('.purple');
-    blue.button = document.querySelector('.blue');
-    green.button = document.querySelector('.green');
+    colors.red.button = document.querySelector('.red');
+    colors.purple.button = document.querySelector('.purple');
+    colors.blue.button = document.querySelector('.blue');
+    colors.green.button = document.querySelector('.green');
 
-    red.name = 'red';
-    purple.name = 'purple';
-    blue.name = 'blue';
-    green.name = 'green';
+    colors.red.name = 'red';
+    colors.purple.name = 'purple';
+    colors.blue.name = 'blue';
+    colors.green.name = 'green';
 
     start.addEventListener(
         'click',
         startGame
     );
 
-    red.button.addEventListener(
+    colors.red.button.addEventListener(
         'click',
         clickHandler
     );
 
-    purple.button.addEventListener(
+    colors.purple.button.addEventListener(
         'click',
         clickHandler
     );
 
-    blue.button.addEventListener(
+    colors.blue.button.addEventListener(
         'click',
         clickHandler
     );
 
-    green.button.addEventListener(
+    colors.green.button.addEventListener(
         'click',
         clickHandler
     );
@@ -111,11 +128,11 @@ function askHandler(){
     }
     switch (simon[0]) {
         case 0:
-            purple.button.classList.toggle('on');
+            colors.purple.button.classList.toggle('on');
             play(200);
             setTimeout(
                 function(){
-                    purple.button.classList.toggle(
+                    colors.purple.button.classList.toggle(
                         'on'
                     );
                     simon.shift();
@@ -127,11 +144,11 @@ function askHandler(){
             );
             break;
         case 1:
-            red.button.classList.toggle('on');
+            colors.red.button.classList.toggle('on');
             play(225);
             setTimeout(
                 function(){
-                    red.button.classList.toggle(
+                    colors.red.button.classList.toggle(
                         'on'
                     );
                     simon.shift();
@@ -143,11 +160,11 @@ function askHandler(){
             );
             break;
         case 2:
-            blue.button.classList.toggle('on');
+            colors.blue.button.classList.toggle('on');
             play(250);
             setTimeout(
                 function(){
-                    blue.button.classList.toggle(
+                    colors.blue.button.classList.toggle(
                         'on'
                     );
                     simon.shift();
@@ -159,11 +176,11 @@ function askHandler(){
             );
             break;
         case 3:
-            green.button.classList.toggle('on');
+            colors.green.button.classList.toggle('on');
             play(275);
             setTimeout(
                 function(){
-                    green.button.classList.toggle(
+                    colors.green.button.classList.toggle(
                         'on'
                     );
                     simon.shift();
