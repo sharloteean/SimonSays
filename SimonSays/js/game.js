@@ -94,7 +94,7 @@ function clickHandler(e){
     if(answer === true){
         answer = false;
         play(colors[e.target.parentNode.className][e.target.className].frequency);
-        changeState(e.target.parentNode.className,e.target.className);
+        changeState(e.target.className,'on');
         answerHandler(number);
     }
 }
@@ -119,7 +119,7 @@ function allocateData(){
 
 function add(){
 
-    simonStored.unshift(Math.round((Math.random() * 100) % 15));
+    simonStored.push(Math.round((Math.random() * 100) % 15));
     simon = simonStored.slice();
 
     console.log('stored array :',simonStored);
@@ -137,7 +137,7 @@ function askHandler(){
     }
 
     play(colorArray[simon[0]].info.frequency);
-    changeState(colorArray[simon[0]].color,colorArray[simon[0]].shade);
+    changeState(colorArray[simon[0]].shade, 'on');
 
     setTimeout(
         function(){
@@ -164,14 +164,14 @@ function play(freq){
     };
 }
 
-function changeState(color, shade){
-    var element = document.querySelector('.'+ shade);
+function changeState(elementID, className){
+    var element = document.querySelector('.'+ elementID);
 
-    element.classList.toggle('on');
+    element.classList.toggle(className);
 
     setTimeout(
         function(){
-            element.classList.toggle('on');
+            element.classList.toggle(className);
         },
         delayTime
     );
@@ -191,15 +191,14 @@ function answerHandler(response){
 
 function correctHandler(){
     answer = true;
-    console.log('inside correctHandler');
-    console.log(answer);
     simon.shift();
     if(simon.length === 0){
+        changeState('gameBody', 'right');
         setTimeout(
             function(){
                 add();
             },
-            delayTime
+            delayTime + 300
         );
     }
 }
@@ -208,11 +207,13 @@ function wrongHandler(){
     console.log('lol wrong!');
     simonStored = [];
     simon = [];
+    var element = document.querySelector('.gameBody');
 
+    element.classList.toggle('wrong');
     setTimeout(
         function(){
-
+            element.classList.toggle('wrong');
         },
-        delayTime
+        (delayTime + 200)
     );
 }

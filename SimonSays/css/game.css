@@ -6,6 +6,11 @@ body{
     margin: 0;
     padding: 0;
     background-color: rgb(34, 34, 34);
+    -webkit-transition: background-color 0.4s;
+}
+
+body div{
+    -webkit-transition: background-color 0.2s, border-radius 0.2s;
 }
 
 .start{
@@ -191,6 +196,14 @@ body{
 }
 
 .on{
-    background-color: rgb(255, 255, 255) !important;
+    background-color: rgb(255, 255, 255) ;
     border-radius: 200px;
+}
+
+.wrong{
+    background-color: red;
+}
+
+.right{
+    background-color: blue;
 }
