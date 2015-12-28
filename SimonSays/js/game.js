@@ -90,10 +90,12 @@ function resetGame(){
 }
 
 function clickHandler(e){
-    console.log()//finish this later lol :/
-    console.log(e.target.className);
+    var number = colors[e.target.parentNode.className][e.target.className].value;
     if(answer === true){
         answer = false;
+        play(colors[e.target.parentNode.className][e.target.className].frequency);
+        changeState(e.target.parentNode.className,e.target.className);
+        answerHandler(number);
     }
 }
 
@@ -109,7 +111,7 @@ function allocateData(){
                 shade : j,
                 info : colors[i][j]
             };
-            colors[i][j].number = count;
+            colors[i][j].value = count;
             count++;
         }
     }
@@ -140,7 +142,6 @@ function askHandler(){
     setTimeout(
         function(){
             simon.shift();
-
             window.events.trigger(
                 'ask'
             );
@@ -176,8 +177,8 @@ function changeState(color, shade){
     );
 }
 
-function answerHandler(answer){
-    if (Number(answer) == simon[0]){
+function answerHandler(response){
+    if (Number(response) === simon[0]){
         window.events.trigger(
             'correct'
         );
@@ -189,11 +190,17 @@ function answerHandler(answer){
 }
 
 function correctHandler(){
-    simon.shift();
     answer = true;
+    console.log('inside correctHandler');
+    console.log(answer);
+    simon.shift();
     if(simon.length === 0){
-        add();
-        return;
+        setTimeout(
+            function(){
+                add();
+            },
+            delayTime
+        );
     }
 }
 
@@ -201,5 +208,11 @@ function wrongHandler(){
     console.log('lol wrong!');
     simonStored = [];
     simon = [];
-    add();
+
+    setTimeout(
+        function(){
+
+        },
+        delayTime
+    );
 }
