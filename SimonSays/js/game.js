@@ -9,6 +9,12 @@ var reset;
 var answer = false;
 
 var colors = {
+    green:{
+        light:{},
+        lightMedium:{},
+        darkMedium:{},
+        dark:{}
+    },
     blue:{
         light : {},
         lightMedium: {},
