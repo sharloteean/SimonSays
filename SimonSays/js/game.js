@@ -8,6 +8,8 @@ var start;
 var reset;
 var answer = false;
 
+var delayTime = 400;
+
 var colors = {
     green:{
         lightGreen:{},
@@ -83,7 +85,8 @@ function startGame(){
 }
 
 function resetGame(){
-    console.log('the game will be reset');
+    simonStored = [];
+    simon = [];
 }
 
 function clickHandler(e){
@@ -131,7 +134,7 @@ function askHandler(){
 
     play(colorArray[simon[0]].info.frequency);
     changeState(colorArray[simon[0]].color,colorArray[simon[0]].shade);
-    
+
     setTimeout(
         function(){
             simon.shift();
@@ -140,7 +143,7 @@ function askHandler(){
                 'ask'
             );
         },
-        300
+        delayTime
     );
 }
 
@@ -152,7 +155,7 @@ function play(freq){
     sound.frequency.value = freq;
 
     sound.start(0);
-    sound.stop(0.3);
+    sound.stop(delayTime/1000);
     sound.onended = function closeContext(){
         context.close();
     };
@@ -167,7 +170,7 @@ function changeState(color, shade){
         function(){
             element.classList.toggle('on');
         },
-        300
+        delayTime
     );
 }
 
