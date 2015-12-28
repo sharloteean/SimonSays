@@ -10,30 +10,32 @@ var answer = false;
 
 var colors = {
     green:{
-        light:{},
-        lightMedium:{},
-        darkMedium:{},
-        dark:{}
+        lightGreen:{},
+        lightMediumGreen:{},
+        darkMediumGreen:{},
+        darkGreen:{}
     },
     blue:{
-        light : {},
-        lightMedium: {},
-        darkMedium: {},
-        dark:{}
+        lightBlue: {},
+        lightMediumBlue: {},
+        darkMediumBlue: {},
+        darkBlue:{}
     },
     purple: {
-        light : {},
-        lightMedium: {},
-        darkMedium: {},
-        dark:{}
+        lightPurple: {},
+        lightMediumPurple: {},
+        darkMediumPurple: {},
+        darkPurple:{}
     },
     red: {
-        light : {},
-        lightMedium: {},
-        darkMedium: {},
-        dark:{}
+        lightRed: {},
+        lightMediumRed: {},
+        darkMediumRed: {},
+        darkRed:{}
     }
 };
+
+var colorArray = [];
 
 function init() {
     window.events = new window.pubsub();
@@ -55,45 +57,25 @@ function init() {
 
     var start = document.querySelector('.start');
     var reset = document.querySelector('.reset');
-    colors.red.button = document.querySelector('.red');
-    colors.purple.button = document.querySelector('.purple');
-    colors.blue.button = document.querySelector('.blue');
-    colors.green.button = document.querySelector('.green');
 
-    colors.red.name = 'red';
-    colors.purple.name = 'purple';
-    colors.blue.name = 'blue';
-    colors.green.name = 'green';
+    var game = document.querySelector('.game');
 
     start.addEventListener(
         'click',
         startGame
     );
 
-    colors.red.button.addEventListener(
-        'click',
-        clickHandler
-    );
-
-    colors.purple.button.addEventListener(
-        'click',
-        clickHandler
-    );
-
-    colors.blue.button.addEventListener(
-        'click',
-        clickHandler
-    );
-
-    colors.green.button.addEventListener(
-        'click',
-        clickHandler
-    );
-
     reset.addEventListener(
         'click',
         resetGame
     );
+
+    game.addEventListener(
+        'click',
+        clickHandler
+    );
+
+    allocateFrequency();
 }
 
 function startGame(){
@@ -105,18 +87,32 @@ function resetGame(){
 }
 
 function clickHandler(e){
-    console.log(this.className);
     if(answer === true){
-        play(200);
+        changeState(e.target.parentNode.className, e.target.className);
         answer = false;
-        answerHandler(0);
     }
 }
 
+function allocateFrequency(){
+    var count = 0;
+    var freq = 200;
+    for(var i in colors){
+        for(var j in colors[i]){
+            colors[i][j].frequency = freq;
+            freq = freq + 25;
+            colorArray[count] = {
+                color : i,
+                shade : j,
+                info : colors[i][j]
+            };
+            count++;
+        }
+    }
+}
 
 function add(){
 
-    simonStored.unshift(Math.round((Math.random() * 100) % 3));
+    simonStored.unshift(Math.round((Math.random() * 100) % 15));
     simon = simonStored.slice();
 
     console.log('stored array :',simonStored);
@@ -132,72 +128,47 @@ function askHandler(){
         answer = true;
         return;
     }
-    switch (simon[0]) {
-        case 0:
-            colors.purple.button.classList.toggle('on');
-            play(200);
-            setTimeout(
-                function(){
-                    colors.purple.button.classList.toggle(
-                        'on'
-                    );
-                    simon.shift();
-                    window.events.trigger(
-                        'ask'
-                    );
-                },
-                800
+
+    play(colorArray[simon[0]].info.frequency);
+    changeState(colorArray[simon[0]].color,colorArray[simon[0]].shade);
+    
+    setTimeout(
+        function(){
+            simon.shift();
+
+            window.events.trigger(
+                'ask'
             );
-            break;
-        case 1:
-            colors.red.button.classList.toggle('on');
-            play(225);
-            setTimeout(
-                function(){
-                    colors.red.button.classList.toggle(
-                        'on'
-                    );
-                    simon.shift();
-                    window.events.trigger(
-                        'ask'
-                    );
-                },
-                800
-            );
-            break;
-        case 2:
-            colors.blue.button.classList.toggle('on');
-            play(250);
-            setTimeout(
-                function(){
-                    colors.blue.button.classList.toggle(
-                        'on'
-                    );
-                    simon.shift();
-                    window.events.trigger(
-                        'ask'
-                    );
-                },
-                800
-            );
-            break;
-        case 3:
-            colors.green.button.classList.toggle('on');
-            play(275);
-            setTimeout(
-                function(){
-                    colors.green.button.classList.toggle(
-                        'on'
-                    );
-                    simon.shift();
-                    window.events.trigger(
-                        'ask'
-                    );
-                },
-                800
-            );
-            break;
-    }
+        },
+        300
+    );
+}
+
+function play(freq){
+    window.AudioContext = window.AudioContext;
+    var context = new AudioContext();
+    var sound = context.createOscillator();
+    sound.connect(context.destination);
+    sound.frequency.value = freq;
+
+    sound.start(0);
+    sound.stop(0.3);
+    sound.onended = function closeContext(){
+        context.close();
+    };
+}
+
+function changeState(color, shade){
+    var element = document.querySelector('.'+ shade);
+
+    element.classList.toggle('on');
+
+    setTimeout(
+        function(){
+            element.classList.toggle('on');
+        },
+        300
+    );
 }
 
 function answerHandler(answer){
@@ -226,18 +197,4 @@ function wrongHandler(){
     simonStored = [];
     simon = [];
     add();
-}
-
-function play(freq){
-    window.AudioContext = window.AudioContext;
-    var context = new AudioContext();
-    var sound = context.createOscillator();
-    sound.connect(context.destination);
-    sound.frequency.value = freq;
-
-    sound.start(0);
-    sound.stop(0.5);
-    sound.onended = function closeContext(){
-        context.close();
-    };
 }
