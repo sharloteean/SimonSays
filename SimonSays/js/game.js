@@ -77,7 +77,7 @@ function init() {
         clickHandler
     );
 
-    allocateFrequency();
+    allocateData();
 }
 
 function startGame(){
@@ -90,13 +90,14 @@ function resetGame(){
 }
 
 function clickHandler(e){
+    console.log()//finish this later lol :/
+    console.log(e.target.className);
     if(answer === true){
-        changeState(e.target.parentNode.className, e.target.className);
         answer = false;
     }
 }
 
-function allocateFrequency(){
+function allocateData(){
     var count = 0;
     var freq = 200;
     for(var i in colors){
@@ -108,6 +109,7 @@ function allocateFrequency(){
                 shade : j,
                 info : colors[i][j]
             };
+            colors[i][j].number = count;
             count++;
         }
     }
@@ -196,7 +198,7 @@ function correctHandler(){
 }
 
 function wrongHandler(){
-    console.log('wrong');
+    console.log('lol wrong!');
     simonStored = [];
     simon = [];
     add();
