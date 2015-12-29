@@ -153,13 +153,29 @@ function askHandler(){
 function play(freq){
     window.AudioContext = window.AudioContext;
     var context = new AudioContext();
-    var sound = context.createOscillator();
-    sound.connect(context.destination);
-    sound.frequency.value = freq;
+    var oscillator = context.createOscillator();
+    var gainNode = context.createGain();
 
-    sound.start(0);
-    sound.stop(delayTime/1000);
-    sound.onended = function closeContext(){
+    oscillator.connect(gainNode);
+    gainNode.connect(context.destination);
+
+    oscillator.frequency.value = freq;
+
+    gainNode.gain.value = 1;
+
+    // var now = Date.now();
+    // var period =(6 / (Math.PI * 2));
+
+    oscillator.start();
+
+    // while((Date.now() - now) < 370){
+    //     //if((Date.now() - now) > 185){
+    //         gainNode.gain.value = Math.sin(period * ((Date.now() - now)/100));
+    //     //}
+    // }
+
+    oscillator.stop(delayTime/1000);
+    oscillator.onended = function closeContext(){
         context.close();
     };
 }
