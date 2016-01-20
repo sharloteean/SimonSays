@@ -81,12 +81,16 @@ function init() {
 }
 
 function startGame(){
+    var score = document.getElementById('count');
     add();
+    score.innerHTML = 0;
 }
 
 function resetGame(){
+    var score = document.getElementById('count');
     simonStored = [];
     simon = [];
+    score.innerHTML = 0;
 }
 
 function clickHandler(e){
@@ -206,6 +210,7 @@ function answerHandler(response){
 }
 
 function correctHandler(){
+    var score = document.getElementById('count');
     answer = true;
     simon.shift();
     if(simon.length === 0){
@@ -217,6 +222,7 @@ function correctHandler(){
             delayTime + 300
         );
     }
+    score.innerHTML = simonStored.length;
 }
 
 function wrongHandler(){
