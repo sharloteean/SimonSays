@@ -1,16 +1,17 @@
+'use strict';
+
 window.onload=function(e){
     init();
 };
 
-var simon = [];
-var simonStored = [];
-var start;
-var reset;
-var answer = false;
+let simon = [];
+let simonStored = [];
+let answer = false;
+let highScore = 0;
 
-var delayTime = 400;
+const delayTime = 400;
 
-var colors = {
+const colors = {
     green:{
         lightGreen:{},
         lightMediumGreen:{},
@@ -37,9 +38,10 @@ var colors = {
     }
 };
 
-var colorArray = [];
+let colorArray = [];
 
 function init() {
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
     window.events = new window.pubsub();
 
     window.events.on(
@@ -57,10 +59,10 @@ function init() {
         wrongHandler
     );
 
-    var start = document.querySelector('.start');
-    var reset = document.querySelector('.reset');
+    const start = document.querySelector('.start');
+    const reset = document.querySelector('.reset');
 
-    var game = document.querySelector('.game');
+    const game = document.querySelector('.game');
 
     start.addEventListener(
         'click',
@@ -81,20 +83,22 @@ function init() {
 }
 
 function startGame(){
-    var score = document.getElementById('count');
+    const score = document.querySelector('.score');
+    simonStored = [];
+    simon = [];
     add();
-    score.innerHTML = 0;
+    score.innerHTML = `SCORE: 0`;
 }
 
 function resetGame(){
-    var score = document.getElementById('count');
+    const score = document.querySelector('.score');
     simonStored = [];
     simon = [];
-    score.innerHTML = 0;
+    score.innerHTML = `SCORE: 0`;
 }
 
 function clickHandler(e){
-    var number = colors[e.target.parentNode.className][e.target.className].value;
+    const number = colors[e.target.parentNode.className][e.target.className].value;
     if(answer === true){
         answer = false;
         play(colors[e.target.parentNode.className][e.target.className].frequency);
@@ -104,10 +108,10 @@ function clickHandler(e){
 }
 
 function allocateData(){
-    var count = 0;
-    var freq = 200;
-    for(var i in colors){
-        for(var j in colors[i]){
+    let count = 0;
+    let freq = 200;
+    for(let i in colors){
+        for(let j in colors[i]){
             colors[i][j].frequency = freq;
             freq = freq + 25;
             colorArray[count] = {
@@ -155,28 +159,16 @@ function askHandler(){
 }
 
 function play(freq){
-    window.AudioContext = window.AudioContext;
-    var context = new AudioContext();
-    var oscillator = context.createOscillator();
-    var gainNode = context.createGain();
+    const context = new AudioContext();
+    const oscillator = context.createOscillator();
+    const gainNode = context.createGain();
 
     oscillator.connect(gainNode);
     gainNode.connect(context.destination);
 
     oscillator.frequency.value = freq;
-
     gainNode.gain.value = 1;
-
-    // var now = Date.now();
-    // var period =(6 / (Math.PI * 2));
-
     oscillator.start();
-
-    // while((Date.now() - now) < 370){
-    //     //if((Date.now() - now) > 185){
-    //         gainNode.gain.value = Math.sin(period * ((Date.now() - now)/100));
-    //     //}
-    // }
 
     oscillator.stop(delayTime/1000);
     oscillator.onended = function closeContext(){
@@ -185,7 +177,7 @@ function play(freq){
 }
 
 function changeState(elementID, className){
-    var element = document.querySelector('.'+ elementID);
+    const element = document.querySelector(`.${elementID}`);
 
     element.classList.toggle(className);
 
@@ -210,11 +202,12 @@ function answerHandler(response){
 }
 
 function correctHandler(){
-    var score = document.getElementById('count');
+    const score = document.querySelector('.score');
     answer = true;
     simon.shift();
     if(simon.length === 0){
         changeState('gameBody', 'right');
+        score.innerHTML = `SCORE: ${simonStored.length}`;
         setTimeout(
             function(){
                 add();
@@ -222,20 +215,19 @@ function correctHandler(){
             delayTime + 300
         );
     }
-    score.innerHTML = simonStored.length;
 }
 
 function wrongHandler(){
     console.log('lol wrong!');
     simonStored = [];
     simon = [];
-    var element = document.querySelector('.gameBody');
+    const element = document.querySelector('.gameBody');
 
     element.classList.toggle('wrong');
     setTimeout(
         function(){
             element.classList.toggle('wrong');
         },
-        (delayTime + 200)
+        delayTime + 200
     );
 }

@@ -13,212 +13,202 @@ body div{
     -webkit-transition: background-color 0.2s, border-radius 0.2s;
 }
 
+.game{
+    display: -webkit-inline-box;
+    position: absolute;
+    height: 100%;
+    width: 50.5em;
+    left: calc(50% - 25.25em);
+    background-color: rgb(27, 27, 27);
+}
+
 .start{
     z-index: 1000;
+    top: 0.5em;
     position: absolute;
-    top: 0.15em;
-    width: 150px;
-    left: calc(50% - 521px);
+    height: 2em;
+    width: 5em;
+    left: calc(50% - 16em);
     background-color: rgb(167, 167, 167);
     text-align: center;
-    line-height: 75px;
-    font-family: ubuntu;
-    font-size: 38px;
+    line-height: 2em;
+    font-family: helvetica;
+    font-size: 2em;
 }
 
 .reset{
     z-index: 1000;
+    top: 0.5em;
     position: absolute;
-    top: 0.15em;
-    width: 150px;
-    left: calc(50% - 253px);
+    height: 2em;
+    width: 5em;
+    left: calc(50% - 10em);
     background-color: rgb(54, 54, 54);
     color: white;
     text-align: center;
-    line-height: 75px;
-    font-family: ubuntu;
-    font-size: 38px;
+    line-height: 2em;
+    font-family: helvetica;
+    font-size: 2em;
 }
 
 .score{
     z-index: 1000;
     position: absolute;
-    top: 0.15em;
-    width: 175px;
-    right: 470px;
+    top: 0.5em;
+    width: 5em;
+    height: 2em;
+    left: calc(50% + 10em);
     background-color: rgb(0, 255, 140);
     color: rgb(0, 16, 255);
     text-align: left;
-    line-height: 75px;
-    font-family: ubuntu;
-    font-size: 38px;
-}
-
-.count {
-    margin: 0;
-    top: 0;
-    right: 0;
-    font-size: 45px;
-    line-height: 73px;
-    position: absolute;
-}
-
-.game{
-    display: -webkit-inline-box;
-    position: absolute;
-    height: 100%;
-    width: 1100px;
-    left: calc(50% - 550px);
-    background-color: rgb(27, 27, 27);
+    line-height: 2em;
+    font-family: helvetica;
+    font-size: 2em;
 }
 
 .green{
-    margin: 0 0 0 28px;
+    margin: 0 0 0 0.5em;
     position: relative;
-    top: calc(50% - 400px);
-    height: 800px;
-    width: 240px;
+    top: calc(50% - 21em);
+    width: 12em;
 }
 
 .green .lightGreen{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(0, 224, 36);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .green .lightMediumGreen{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(0, 143, 23);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .green .darkMediumGreen{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(2, 84, 15);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .green .darkGreen{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(1, 41, 7);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .blue{
-    margin: 0 0 0 28px;
+    margin: 0 0 0 0.5em;
     position: relative;
-    top: calc(50% - 400px);
-    height: 800px;
-    width: 240px;
+    top: calc(50% - 21em);
+    width: 12em;
 }
 
 .blue .lightBlue{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(2, 107, 214);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .blue .lightMediumBlue{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(3, 75, 148);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .blue .darkMediumBlue{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(4, 54, 106);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .blue .darkBlue{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(3, 36, 71);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .purple{
-    margin: 0 0 0 28px;
+    margin: 0 0 0 0.5em;
     position: relative;
-    top: calc(50% - 400px);
-    height: 800px;
-    width: 240px;
+    top: calc(50% - 21em);
+    width: 12em;
 }
 
 .purple .lightPurple{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(150, 0, 255);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .purple .lightMediumPurple{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(101, 3, 170);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .purple .darkMediumPurple{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(64, 0, 110);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .purple .darkPurple{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(39, 1, 66);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .red{
-    margin: 0 0 0 28px;
+    margin: 0 0 0 0.5em;
     position: relative;
-    top: calc(50% - 400px);
-    height: 800px;
-    width: 240px;
+    top: calc(50% - 21em);
+    width: 12em;
 }
 
 .red .lightRed{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(241, 0, 22);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .red .lightMediumRed{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(175, 0, 16);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .red .darkMediumRed{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(110, 0, 10);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .red .darkRed{
-    height: 180px;
-    width: 240px;
+    height: 10em;
+    width: 12em;
     background-color: rgb(61, 0, 6);
-    margin: 0 0 28px 0;
+    margin: 0 0 0.5em 0;
 }
 
 .on{
     background-color: rgb(255, 255, 255) ;
-    border-radius: 200px;
+    border-radius: 15em;
 }
 
 .wrong{
