@@ -2,33 +2,38 @@
   "name": "simon_says",
   "version": "0.0.0",
   "description": "simple simon says game",
-  "main": "server.js",
-  "dependencies": {
-    "event-pubsub": "^1.0.3",
-    "js-queue": "^0.1.2",
-    "node-http-server": "^3.0.5"
-  },
+  "main": "main.js",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "windows":"build -w --x64 --ia32",
+    "release":"build -ml --x64",
+    "linux":"build -l --x64",
+    "test": "build",
+    "start": "electron ./app --enable-logging",
+    "postinstall": "install-app-deps"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MaybeRex/SimonSays.git"
   },
-  "keywords": [
-    "simon",
-    "says",
-    "game",
-    "fun",
-    "lol",
-    "ayylmao"
-  ],
+  "devDependencies": {
+    "electron": "^1.4.2",
+    "electron-builder": "^7.10.2"
+  },
   "author": "Mario Solorzano",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MaybeRex/SimonSays/issues"
   },
-  "homepage": "https://github.com/MaybeRex/SimonSays#readme"
+  "homepage": "https://github.com/MaybeRex/SimonSays#readme",
+  "build": {
+    "appId": "simon.says",
+    "mac": {
+      "category": "your.app.category.type"
+    },
+    "win": {
+      "iconUrl": "(windows-only) https link to icon"
+    }
+  }
 }
