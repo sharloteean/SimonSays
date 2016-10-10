@@ -28,12 +28,6 @@
   },
   "homepage": "https://github.com/MaybeRex/SimonSays#readme",
   "build": {
-    "appId": "simon.says",
-    "mac": {
-      "category": "your.app.category.type"
-    },
-    "win": {
-      "iconUrl": ""
-    }
+    "appId": "simon.says"
   }
 }
