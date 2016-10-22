@@ -59,11 +59,14 @@ function init() {
         wrongHandler
     );
 
-    const start = document.querySelector('.start');
-    const reset = document.querySelector('.reset');
+    localStorage.highScore = localStorage.highScore || 0;
 
-    const game = document.querySelector('.game');
+    const start = document.body.querySelector('.start');
+    const reset = document.body.querySelector('.reset');
 
+    const game = document.body.querySelector('.game');
+    const highScore = document.body.querySelector('.highScore');
+    highScore.innerHTML = `HIGH SCORE : ${localStorage.highScore}`;
     start.addEventListener(
         'click',
         startGame
@@ -84,6 +87,7 @@ function init() {
 
 function startGame(){
     const score = document.querySelector('.score');
+    const highScore = document.body.querySelector('.highScore');
     simonStored = [];
     simon = [];
     add();
@@ -92,9 +96,13 @@ function startGame(){
 
 function resetGame(){
     const score = document.querySelector('.score');
+    const highScore = document.body.querySelector('.highScore');
     simonStored = [];
     simon = [];
     score.innerHTML = `SCORE: 0`;
+    console.log(highScore);
+    highScore.innerHTML = 'HIGH SCORE : 0';
+    localStorage.highScore = 0;
 }
 
 function clickHandler(e){
@@ -129,8 +137,6 @@ function add(){
 
     simonStored.push(Math.round((Math.random() * 100) % 15));
     simon = simonStored.slice();
-
-    console.log('stored array :',simonStored);
 
     window.events.trigger(
         'ask'
@@ -194,20 +200,25 @@ function answerHandler(response){
         window.events.trigger(
             'correct'
         );
-    }else{
-        window.events.trigger(
-            'wrong'
-        );
+        return
     }
+    window.events.trigger(
+        'wrong'
+    );
 }
 
 function correctHandler(){
     const score = document.querySelector('.score');
+    const highScore = document.body.querySelector('.highScore');
     answer = true;
     simon.shift();
     if(simon.length === 0){
         changeState('gameBody', 'right');
         score.innerHTML = `SCORE: ${simonStored.length}`;
+        if(simonStored.length > Number(localStorage.highScore)){
+            localStorage.highScore = simonStored.length;
+            highScore.innerHTML = `HIGH SCORE :${localStorage.highScore}`;
+        }
         setTimeout(
             function(){
                 add();
