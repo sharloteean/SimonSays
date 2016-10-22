@@ -100,7 +100,6 @@ function resetGame(){
     simonStored = [];
     simon = [];
     score.innerHTML = `SCORE: 0`;
-    console.log(highScore);
     highScore.innerHTML = 'HIGH SCORE : 0';
     localStorage.highScore = 0;
 }
@@ -229,7 +228,6 @@ function correctHandler(){
 }
 
 function wrongHandler(){
-    console.log('lol wrong!');
     simonStored = [];
     simon = [];
     const element = document.querySelector('.gameBody');
