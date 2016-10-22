@@ -6,72 +6,80 @@
         <link rel='stylesheet' href='./css/game.css'>
     </head>
     <body class = 'gameBody'>
-        <div class = 'start'>
-            START
-        </div>
-        <div class = 'reset'>
-            RESET
-        </div>
-        <div class = 'score'>
-            SCORE: 0
-        </div>
-
+        <section class = 'controls'>
+            <section class = 'buttons'>
+                <div class = 'start'>
+                    START
+                </div>
+                <div class = 'reset'>
+                    RESET
+                </div>
+            </section>
+            <section class = 'indicators'>
+                <div class = 'score'>
+                    SCORE: 0
+                </div>
+                <div class = 'highScore'>
+                    HIGH SCORE: 0
+                </div>
+            </section>
+        </section>
         <section class = 'game'>
 
-            <section class = 'green'>
-                <div class= 'lightGreen'>
+            <section class = 'green' data-type = 'blockContainer'>
+                <div class= 'lightGreen' data-type = 'gameBlock'>
                 </div>
 
-                <div class= 'lightMediumGreen'>
+                <div class= 'lightMediumGreen' data-type = 'gameBlock'>
                 </div>
 
-                <div class = 'darkMediumGreen'>
+                <div class = 'darkMediumGreen' data-type = 'gameBlock'>
                 </div>
 
-                <div class = 'darkGreen'>
-                </div>
-            </section>
-
-            <section class = 'blue'>
-
-                <div class= 'lightBlue'>
-                </div>
-
-                <div class= 'lightMediumBlue'>
-                </div>
-
-                <div class = 'darkMediumBlue'>
-                </div>
-
-                <div class = 'darkBlue'>
+                <div class = 'darkGreen' data-type = 'gameBlock'>
                 </div>
             </section>
 
-            <section class = 'purple'>
-                <div class= 'lightPurple'>
+            <section class = 'blue' data-type = 'blockContainer'>
+
+                <div class= 'lightBlue' data-type = 'gameBlock'>
                 </div>
 
-                <div class= 'lightMediumPurple'>
+                <div class= 'lightMediumBlue' data-type = 'gameBlock'>
                 </div>
 
-                <div class = 'darkMediumPurple'>
+                <div class = 'darkMediumBlue' data-type = 'gameBlock'>
                 </div>
 
-                <div class = 'darkPurple'>
+                <div class = 'darkBlue' data-type = 'gameBlock'>
                 </div>
             </section>
 
-            <section class = 'red'>
-                <div class= 'lightRed'>
+            <section class = 'purple' data-type = 'blockContainer'>
+                <div class= 'lightPurple' data-type = 'gameBlock'>
                 </div>
 
-                <div class= 'lightMediumRed'>
+                <div class= 'lightMediumPurple' data-type = 'gameBlock'>
                 </div>
 
-                <div class = 'darkMediumRed'>
+                <div class = 'darkMediumPurple' data-type = 'gameBlock'>
                 </div>
 
-                <div class = 'darkRed'>
+                <div class = 'darkPurple' data-type = 'gameBlock'>
+                </div>
+            </section>
+
+            <section class = 'red' data-type = 'blockContainer'>
+                <div class= 'lightRed' data-type = 'gameBlock'>
+                </div>
+
+                <div class= 'lightMediumRed' data-type = 'gameBlock'>
+                </div>
+
+                <div class = 'darkMediumRed' data-type = 'gameBlock'>
+                </div>
+
+                <div class = 'darkRed' data-type = 'gameBlock'>
                 </div>
             </section>
 
