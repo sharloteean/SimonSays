@@ -3,23 +3,21 @@
   "version": "0.0.0",
   "description": "simple simon says game",
   "main": "main.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "electron": "^1.4.2",
+    "electron-builder": "^7.10.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "windows":"build -w --x64 --ia32",
-    "release":"build -ml --x64",
-    "linux":"build -l --x64",
     "test": "build",
+    "windows": "build -w --x64 --ia32",
+    "release": "build -ml --x64",
+    "linux": "build -l --x64",
     "start": "electron ./app --enable-logging",
     "postinstall": "install-app-deps"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MaybeRex/SimonSays.git"
-  },
-  "devDependencies": {
-    "electron": "^1.4.2",
-    "electron-builder": "^7.10.2"
   },
   "author": "Mario Solorzano",
   "license": "ISC",
@@ -29,5 +27,8 @@
   "homepage": "https://github.com/MaybeRex/SimonSays#readme",
   "build": {
     "appId": "simon.says"
+  },
+  "dependencies": {
+    "node-http-server": "^6.2.1"
   }
 }
