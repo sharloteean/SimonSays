@@ -13,7 +13,8 @@
     "release": "build -ml --x64",
     "linux": "build -l --x64",
     "start": "electron ./app --enable-logging",
-    "postinstall": "install-app-deps"
+    "postinstall": "install-app-deps",
+    "cordova": "rm -rf cordova/www/app && cp -R app/ cordova/www/ && cd cordova/ && cordova run android"
   },
   "repository": {
     "type": "git",
