@@ -9,7 +9,7 @@ let simonStored = [];
 let answer = false;
 let highScore = 0;
 
-const delayTime = 400;
+const delayTime = 250;
 
 const colors = {
     green:{

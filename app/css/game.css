@@ -9,7 +9,7 @@ body{
     overflow: hidden;
     margin: 0;
     padding: 0;
-    background-color: rgb(75, 75, 75);
+    background-color: rgb(35, 0, 40);
     transition: background-color 0.4s;
 }
 
@@ -105,12 +105,13 @@ body div{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0 .5em 0 0;
 }
 
 .game div[data-type='gameBlock']{
     height: 25%;
     width: 100%;
-    margin: margin: 0 0 0.5em 0;
+    margin: 0 0 0.5em 0;
 }
 
 .green .lightGreen{
