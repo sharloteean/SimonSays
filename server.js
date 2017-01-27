@@ -5,6 +5,6 @@ server.deploy(
     {
         verbose: false,
         port: 6174,
-        root:'./SimonSays/'
+        root:'./app'
     }
 );
